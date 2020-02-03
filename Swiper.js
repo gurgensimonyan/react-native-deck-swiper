@@ -254,7 +254,7 @@ class Swiper extends Component {
       return
     }
 
-    const { cards, horizontalThreshold, verticalThreshold } = this.props
+    const { horizontalThreshold, verticalThreshold } = this.props
 
     const animatedValueX = Math.abs(this._animatedValueX)
     const animatedValueY = Math.abs(this._animatedValueY)
@@ -280,7 +280,6 @@ class Swiper extends Component {
     this.setState({
       labelType: LABEL_TYPES.NONE,
       slideGesture: false,
-      cards
     })
   }
 
@@ -762,9 +761,9 @@ class Swiper extends Component {
   }
 
   renderStack = () => {
-    const { cards, firstCardIndex, swipedAllCards } = this.state
+    const { firstCardIndex, swipedAllCards } = this.state
     const renderedCards = []
-    let { stackSize, infinite, showSecondCard } = this.props
+    let { cards, stackSize, infinite, showSecondCard } = this.props
     let index = firstCardIndex
     let firstCard = true
     let cardPosition = 0
