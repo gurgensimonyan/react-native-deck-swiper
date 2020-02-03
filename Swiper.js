@@ -80,6 +80,13 @@ class Swiper extends Component {
     )
     return propsChanged || stateChanged
   }
+  
+  static getDerivedStateFromProps = (props, state) => {
+    if (state.cards.length !== props.cards.length) {
+      return { ...state, cards: props.cards, ...calculateCardIndexes(0, props.cards) }
+    }
+    return null
+  }
 
   componentWillUnmount = () => {
     this._mounted = false
@@ -761,9 +768,9 @@ class Swiper extends Component {
   }
 
   renderStack = () => {
-    const { firstCardIndex, swipedAllCards } = this.state
+    const { cards, firstCardIndex, swipedAllCards } = this.state
     const renderedCards = []
-    let { cards, stackSize, infinite, showSecondCard } = this.props
+    let { stackSize, infinite, showSecondCard } = this.props
     let index = firstCardIndex
     let firstCard = true
     let cardPosition = 0
